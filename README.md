@@ -1,1 +1,2 @@
-# UniDungeon
+# UniBoardGame
+# Made with Unity
