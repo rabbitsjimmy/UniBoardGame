@@ -1,2 +1,0 @@
-# UniBoardGame
-# Made with Unity
