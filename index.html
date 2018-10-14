@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Uni: Graduate
+    </title>>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.0.0/dist/phaser.min.js"></script>
+    <style>
+        body {
+	        cursor: url('sprites/SC2-cursor-protoss.cur'), default;
+        }
+        script {
+
+        }
+    </style>
+</head>
+<body>
+        <script>
+        var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 800,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 0 },
+                debug: false
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+        };
+
+        var game = new Phaser.Game(config);
+        var player;
+        var student;
+        var cursors;
+        var beesles;
+        var center;
+
+        function preload ()
+        {
+            this.load.image('board', 'sprites/board.png');
+            this.load.spritesheet('student', 'sprites/student.png', {frameWidth: 136 / 4, frameHeight: 160 / 4});
+            this.load.image('beesley', 'sprites/Beesley.png');
+            this.load.image('player', 'sprites/player.png');
+            this.load.image('center', 'sprites/boardCenter.png');
+            //this.load.image('tileblock', '');
+            
+        }
+
+        function create ()
+        {
+            this.add.image(400, 400, 'board');
+            beesles = this.physics.add.staticGroup();
+            center = this.physics.add.staticGroup();
+            
+            beesles.create(400, 400, 'beesley');
+            student = this.physics.add.sprite(50, 50, 'student');
+            student.setBounce(0.1);
+            student.setCollideWorldBounds(true);
+
+            
+            
+            cursors = this.input.keyboard.createCursorKeys();
+            
+            //student.create(400, 0, 'student');
+            //this.add.image(, 'tileblock');
+            //var playerImg = this.add.image(760, 45, 'player');
+            //playerImg.scaleX = 0.2;
+            //playerImg.scaleY = 0.15;
+
+            this.anims.create({
+                key: 'turn',
+                frames: this.anims.generateFrameNumbers('student', { start: 0, end: 5 }),
+                frameRate: 10,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'none',
+                frames: [ { key: 'student', frame: 4 } ],
+                frameRate: 10
+            });
+            this.physics.add.collider(player, beesles);
+            this.physics.add.collider(player, center);
+
+        }
+
+        function update ()
+        {
+            if (cursors.up.isDown)
+            {
+                student.setVelocityY(-160);
+                student.anims.play('turn', true);
+            }
+            else if (cursors.left.isDown)
+            {
+                student.setVelocityX(-160);
+
+                student.anims.play('turn', true);
+            }
+            else if (cursors.right.isDown)
+            {
+                student.setVelocityX(160);
+
+                student.anims.play('turn', true);
+            }
+            
+            
+            else if (cursors.down.isDown)
+            {
+                student.setVelocityY(160);
+                student.anims.play('turn', true);
+            }
+            else
+            {
+                student.setVelocityY(0);
+                student.setVelocityX(0);
+                student.anims.play('none', true);
+            }
+        }
+        </script>
+</body>
+</html>
