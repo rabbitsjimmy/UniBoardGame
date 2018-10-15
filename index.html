@@ -8,10 +8,12 @@
     <style>
         body {
 	        cursor: url('sprites/SC2-cursor-protoss.cur'), default;
+            background:linear-gradient(to right, #fff,#ddd);
         }
         script {
 
         }
+        
     </style>
 </head>
 <body>
@@ -58,7 +60,9 @@
             beesles = this.physics.add.staticGroup();
             center = this.physics.add.staticGroup();
             
+            center.create(400, 400, 'center');
             beesles.create(400, 400, 'beesley');
+            
             student = this.physics.add.sprite(50, 50, 'student');
             student.setBounce(0.1);
             student.setCollideWorldBounds(true);
@@ -85,16 +89,17 @@
                 frames: [ { key: 'student', frame: 4 } ],
                 frameRate: 10
             });
-            this.physics.add.collider(player, beesles);
-            this.physics.add.collider(player, center);
+            this.physics.add.collider(student, beesles);
+            this.physics.add.collider(student, center); 
 
         }
 
         function update ()
         {
-            if (cursors.up.isDown)
+            
+            if (cursors.right.isDown)
             {
-                student.setVelocityY(-160);
+                student.setVelocityX(160);
                 student.anims.play('turn', true);
             }
             else if (cursors.left.isDown)
@@ -103,9 +108,13 @@
 
                 student.anims.play('turn', true);
             }
-            else if (cursors.right.isDown)
+            else
             {
-                student.setVelocityX(160);
+                student.setVelocityX(0);
+            }
+            if (cursors.up.isDown)
+            {
+                student.setVelocityY(-160);
 
                 student.anims.play('turn', true);
             }
@@ -114,12 +123,13 @@
             else if (cursors.down.isDown)
             {
                 student.setVelocityY(160);
+
                 student.anims.play('turn', true);
             }
             else
             {
                 student.setVelocityY(0);
-                student.setVelocityX(0);
+
                 student.anims.play('none', true);
             }
         }
