@@ -11,7 +11,7 @@
             background:linear-gradient(to right, #fff,#ddd);
         }
         script {
-
+            
         }
         
     </style>
@@ -42,6 +42,13 @@
         var cursors;
         var beesles;
         var center;
+        var dieOne;
+        var dieTwo;
+        var dieThree;
+        var dieFour;
+        var dieFive;
+        var dieSix;
+
 
         function preload ()
         {
@@ -50,6 +57,12 @@
             this.load.image('beesley', 'sprites/Beesley.png');
             this.load.image('player', 'sprites/player.png');
             this.load.image('center', 'sprites/boardCenter.png');
+            this.load.image('DieOne', 'sprites/DieOne.png');
+            this.load.image('DieTwo', 'sprites/DieTwo.png');
+            this.load.image('DieThree', 'sprites/DieThree.png');
+            this.load.image('DieFour', 'sprites/DieFour.png');
+            this.load.image('DieFive', 'sprites/DieFive.png');
+            this.load.image('DieSix', 'sprites/DieSix.png');
             //this.load.image('tileblock', '');
             
         }
@@ -61,14 +74,66 @@
             center = this.physics.add.staticGroup();
             
             center.create(400, 400, 'center');
-            beesles.create(400, 400, 'beesley');
-            
-            student = this.physics.add.sprite(50, 50, 'student');
-            student.setBounce(0.1);
-            student.setCollideWorldBounds(true);
+            //beesles.create(400, 400, 'beesley');
 
             
             
+            student = this.physics.add.sprite(750, 50, 'student');
+            student.setBounce(0.1);
+            student.setCollideWorldBounds(true);
+
+            this.input.mouse.disableContextMenu();
+
+            this.input.on('pointerup', function (pointer) {
+
+                console.log(pointer.upTime - pointer.downTime + 'ms');
+
+                if (pointer.rightButtonDown())
+                {
+                    console.log(pointer.x + ', ' + pointer.y);
+                    if (pointer.x > 100 && pointer.y > 100)
+                    {
+                        if(pointer.x < 700 && pointer.y < 700)
+                        {
+                            var dienumber = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+                            //this.add.image(400, 400, 'beesley');
+                            center.create(400, 400, 'center');
+                            if (dienumber === 1)
+                            {
+                                this.add.image(400, 300, 'DieOne');
+                            }
+                            else if (dienumber === 2)
+                            {
+                                this.add.image(400, 300, 'DieTwo');
+                            }
+                            else if (dienumber === 3)
+                            {
+                                this.add.image(400, 300, 'DieThree');
+                            }
+                            else if (dienumber === 4)
+                            {
+                                this.add.image(400, 300, 'DieFour');
+                            }
+                            else if (dienumber === 5)
+                            {
+                                this.add.image(400, 300, 'DieFive');
+                            }
+                            else if (dienumber === 6)
+                            {
+                                this.add.image(400, 300, 'DieSix');
+                            }
+                            this.add.text(400, 200, dienumber).setFontFamily('Trebuchet MS').setFontSize(25).setColor('#008080');
+                            console.log(dienumber);
+                            
+                        }
+                    }
+                    
+                }
+
+            }, this);
+
+
+            this.add.text(150, 400, 'Right Click here to roll the dice!').setFontFamily('Trebuchet MS').setFontSize(35).setColor('#008080');
             cursors = this.input.keyboard.createCursorKeys();
             
             //student.create(400, 0, 'student');
