@@ -23,6 +23,7 @@
         type: Phaser.AUTO,
         width: 800,
         height: 800,
+        pixelArt: true,
         physics: {
             default: 'arcade',
             arcade: {
@@ -49,6 +50,38 @@
         var dieFour;
         var dieFive;
         var dieSix;
+        var square1;
+        var square2;
+        var square3;
+        var square4;
+        var square5;
+        var square6;
+        var square7;
+        var square8;
+        var square9;
+        var square10;
+        var square11;
+        var square12;
+        var square13;
+        var square14;
+        var square15;
+        var square16;
+        var square17;
+        var square18;
+        var square19;
+        var square20;
+        var square21;
+        var square22;
+        var square23;
+        var square24;
+        var square25;
+        var square26;
+        var square27;
+        var square28;
+        var square29;
+        var square30;
+        var square31;
+        var square32;
 
 
         function preload ()
@@ -64,7 +97,39 @@
             this.load.image('DieFour', 'sprites/DieFour.png');
             this.load.image('DieFive', 'sprites/DieFive.png');
             this.load.image('DieSix', 'sprites/DieSix.png');
-            //this.load.image('tileblock', '');
+            this.load.image('square-1', 'sprites/square-1.png');
+            this.load.image('square-2', 'sprites/square-2.png');
+            this.load.image('square-3', 'sprites/square-3.png');
+            this.load.image('square-4', 'sprites/square-4.png');
+            this.load.image('square-5', 'sprites/square-5.png');
+            this.load.image('square-6', 'sprites/square-6.png');
+            this.load.image('square-7', 'sprites/square-7.png');
+            this.load.image('square-8', 'sprites/square-8.png');
+            this.load.image('square-9', 'sprites/square-9.png');
+            this.load.image('square-10', 'sprites/square-10.png');
+            this.load.image('square-11', 'sprites/square-11.png');
+            this.load.image('square-12', 'sprites/square-12.png');
+            this.load.image('square-13', 'sprites/square-13.png');
+            this.load.image('square-14', 'sprites/square-14.png');
+            this.load.image('square-15', 'sprites/square-15.png');
+            this.load.image('square-16', 'sprites/square-16.png');
+            this.load.image('square-17', 'sprites/square-17.png');
+            this.load.image('square-18', 'sprites/square-18.png');
+            this.load.image('square-19', 'sprites/square-19.png');
+            this.load.image('square-20', 'sprites/square-20.png');
+            this.load.image('square-21', 'sprites/square-21.png');
+            this.load.image('square-22', 'sprites/square-22.png');
+            this.load.image('square-23', 'sprites/square-23.png');
+            this.load.image('square-24', 'sprites/square-24.png');
+            this.load.image('square-25', 'sprites/square-25.png');
+            this.load.image('square-26', 'sprites/square-26.png');
+            this.load.image('square-27', 'sprites/square-27.png');
+            this.load.image('square-28', 'sprites/square-28.png');
+            this.load.image('square-29', 'sprites/square-29.png');
+            this.load.image('square-30', 'sprites/square-30.png');
+            this.load.image('square-31', 'sprites/square-31.png');
+            this.load.image('square-32', 'sprites/square-32.png');
+            
             
         }
 
@@ -76,7 +141,7 @@
             
             center.create(400, 400, 'center');
             //beesles.create(400, 400, 'beesley');
-
+            square1 = this.physics.add.group();
             
             
             student = this.physics.add.sprite(750, 50, 'student');
