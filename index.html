@@ -84,7 +84,6 @@
         var square31;
         var square32;
 
-
         function preload ()
         {
             this.load.image('board', 'sprites/board.png');
@@ -176,7 +175,6 @@
             square32 = this.physics.add.group();
 
 
-
             student = this.physics.add.sprite(750, 50, 'student');
             student.setBounce(0.1);
             student.setCollideWorldBounds(true);
@@ -195,6 +193,8 @@
                     {
                         if(pointer.x < 700 && pointer.y < 700)
                         {
+                            
+
                             var dienumber = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
                             stepsLeft = dienumber + 1;
                             reset();
@@ -227,6 +227,8 @@
                             }
                             this.add.text(400, 200, dienumber).setFontFamily('Trebuchet MS').setFontSize(25).setColor('#008080');
                             console.log(dienumber);
+                            //overSquare1(null, this);
+                            //overSquare2(null, this);
                             
                         }
                     }
@@ -246,6 +248,7 @@
             //var playerImg = this.add.image(760, 45, 'player');
             //playerImg.scaleX = 0.2;
             //playerImg.scaleY = 0.15;
+            
 
             this.anims.create({
                 key: 'turn',
@@ -342,6 +345,8 @@
                 {
                     student.setVelocityX(160);
                     student.anims.play('turn', true);
+                    playerFrame++;
+                    console.log(playerFrame);
                 }
                 else if (cursors.left.isDown)
                 {
@@ -574,13 +579,13 @@
             stepsLeft--;
 
         }
-        function disableAll (student, s)
+        function disableAll (student, square1)
         {
-            square1.
+            square1.disableBody(true, true);
         }
         function reset ()
         {
-            
+            /*
             square1.create(750, 130, 'square-1');
             square2.create(750, 220, 'square-2');
             square3.create(750, 310, 'square-3');
@@ -613,6 +618,7 @@
             square30.create(579, 50, 'square-30');
             square31.create(668, 50, 'square-31');
             square32.create(750, 50, 'square-32');
+            */
 
         }
         </script>
