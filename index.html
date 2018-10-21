@@ -50,6 +50,7 @@
         var dieFour;
         var dieFive;
         var dieSix;
+        var stepsLeft;
         var square1;
         var square2;
         var square3;
@@ -142,8 +143,40 @@
             center.create(400, 400, 'center');
             //beesles.create(400, 400, 'beesley');
             square1 = this.physics.add.group();
-            
-            
+            square2 = this.physics.add.group();
+            square3 = this.physics.add.group();
+            square4 = this.physics.add.group();
+            square5 = this.physics.add.group();
+            square6 = this.physics.add.group();
+            square7 = this.physics.add.group();
+            square8 = this.physics.add.group();
+            square9 = this.physics.add.group();
+            square10 = this.physics.add.group();
+            square11 = this.physics.add.group();
+            square12 = this.physics.add.group();
+            square13 = this.physics.add.group();
+            square14 = this.physics.add.group();
+            square15 = this.physics.add.group();
+            square16 = this.physics.add.group();
+            square17 = this.physics.add.group();
+            square18 = this.physics.add.group();
+            square19 = this.physics.add.group();
+            square20 = this.physics.add.group();
+            square21 = this.physics.add.group();
+            square22 = this.physics.add.group();
+            square23 = this.physics.add.group();
+            square24 = this.physics.add.group();
+            square25 = this.physics.add.group();
+            square26 = this.physics.add.group();
+            square27 = this.physics.add.group();
+            square28 = this.physics.add.group();
+            square29 = this.physics.add.group();
+            square30 = this.physics.add.group();
+            square31 = this.physics.add.group();
+            square32 = this.physics.add.group();
+
+
+
             student = this.physics.add.sprite(750, 50, 'student');
             student.setBounce(0.1);
             student.setCollideWorldBounds(true);
@@ -151,9 +184,10 @@
             this.input.mouse.disableContextMenu();
 
             this.input.on('pointerup', function (pointer) {
-
-                console.log(pointer.upTime - pointer.downTime + 'ms');
-
+                if(dienumber > 0)
+                {
+                    dienumber = 0;
+                }
                 if (pointer.rightButtonDown())
                 {
                     console.log(pointer.x + ', ' + pointer.y);
@@ -162,6 +196,9 @@
                         if(pointer.x < 700 && pointer.y < 700)
                         {
                             var dienumber = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+                            stepsLeft = dienumber + 1;
+                            reset();
+                            //overSquare1(this, this);
                             //this.add.image(400, 400, 'beesley');
                             center.create(400, 400, 'center');
                             if (dienumber === 1)
@@ -198,6 +235,8 @@
 
             }, this);
 
+            
+
 
             this.add.text(150, 400, 'Right Click here to roll the dice!').setFontFamily('Trebuchet MS').setFontSize(35).setColor('#008080');
             cursors = this.input.keyboard.createCursorKeys();
@@ -220,49 +259,361 @@
                 frames: [ { key: 'student', frame: 4 } ],
                 frameRate: 10
             });
-            this.physics.add.collider(student, beesles);
+            
+            //this.physics.add.collider(student, beesles);
             this.physics.add.collider(student, center); 
+            /*
+            this.physics.add.collider(student, square1);
+            this.physics.add.collider(student, square2);
+            this.physics.add.collider(student, square3);
+            this.physics.add.collider(student, square4);
+            this.physics.add.collider(student, square5);
+            this.physics.add.collider(student, square6);
+            this.physics.add.collider(student, square7);
+            this.physics.add.collider(student, square8);
+            this.physics.add.collider(student, square9);
+            this.physics.add.collider(student, square10);
+            this.physics.add.collider(student, square11);
+            this.physics.add.collider(student, square12);
+            this.physics.add.collider(student, square13);
+            this.physics.add.collider(student, square14);
+            this.physics.add.collider(student, square15);
+            this.physics.add.collider(student, square16);
+            this.physics.add.collider(student, square17);
+            this.physics.add.collider(student, square18);
+            this.physics.add.collider(student, square19);
+            this.physics.add.collider(student, square20);
+            this.physics.add.collider(student, square21);
+            this.physics.add.collider(student, square22);
+            this.physics.add.collider(student, square23);
+            this.physics.add.collider(student, square24);
+            this.physics.add.collider(student, square25);
+            this.physics.add.collider(student, square26);
+            this.physics.add.collider(student, square27);
+            this.physics.add.collider(student, square28);
+            this.physics.add.collider(student, square29);
+            this.physics.add.collider(student, square30);
+            this.physics.add.collider(student, square31);
+            this.physics.add.collider(student, square32);*/
+
+            this.physics.add.overlap(student, square1, overSquare1, null, this);
+            this.physics.add.overlap(student, square2, overSquare2, null, this);
+            this.physics.add.overlap(student, square3, overSquare3, null, this);
+            this.physics.add.overlap(student, square4, overSquare4, null, this);
+            this.physics.add.overlap(student, square5, overSquare5, null, this);
+            this.physics.add.overlap(student, square6, overSquare6, null, this);
+            this.physics.add.overlap(student, square7, overSquare7, null, this);
+            this.physics.add.overlap(student, square8, overSquare8, null, this);
+            this.physics.add.overlap(student, square9, overSquare9, null, this);
+            this.physics.add.overlap(student, square10, overSquare10, null, this);
+            this.physics.add.overlap(student, square11, overSquare11, null, this);
+            this.physics.add.overlap(student, square12, overSquare12, null, this);
+            this.physics.add.overlap(student, square13, overSquare13, null, this);
+            this.physics.add.overlap(student, square14, overSquare14, null, this);
+            this.physics.add.overlap(student, square15, overSquare15, null, this);
+            this.physics.add.overlap(student, square16, overSquare16, null, this);
+            this.physics.add.overlap(student, square17, overSquare17, null, this);
+            this.physics.add.overlap(student, square18, overSquare18, null, this);
+            this.physics.add.overlap(student, square19, overSquare19, null, this);
+            this.physics.add.overlap(student, square20, overSquare20, null, this);
+            this.physics.add.overlap(student, square21, overSquare21, null, this);
+            this.physics.add.overlap(student, square22, overSquare22, null, this);
+            this.physics.add.overlap(student, square23, overSquare23, null, this);
+            this.physics.add.overlap(student, square24, overSquare24, null, this);
+            this.physics.add.overlap(student, square25, overSquare25, null, this);
+            this.physics.add.overlap(student, square26, overSquare26, null, this);
+            this.physics.add.overlap(student, square27, overSquare27, null, this);
+            this.physics.add.overlap(student, square28, overSquare28, null, this);
+            this.physics.add.overlap(student, square29, overSquare29, null, this);
+            this.physics.add.overlap(student, square30, overSquare30, null, this);
+            this.physics.add.overlap(student, square31, overSquare31, null, this);
+            this.physics.add.overlap(student, square32, overSquare32, null, this);
+
+
 
         }
 
         function update ()
         {
+            if(stepsLeft > 0)
+            {
             
-            if (cursors.right.isDown)
-            {
-                student.setVelocityX(160);
-                student.anims.play('turn', true);
-            }
-            else if (cursors.left.isDown)
-            {
-                student.setVelocityX(-160);
+                if (cursors.right.isDown)
+                {
+                    student.setVelocityX(160);
+                    student.anims.play('turn', true);
+                }
+                else if (cursors.left.isDown)
+                {
+                    student.setVelocityX(-160);
 
-                student.anims.play('turn', true);
+                    student.anims.play('turn', true);
+                }
+                else
+                {
+                    student.setVelocityX(0);
+                }
+                if (cursors.up.isDown)
+                {
+                    student.setVelocityY(-160);
+
+                    student.anims.play('turn', true);
+                }
+                
+                
+                else if (cursors.down.isDown)
+                {
+                    student.setVelocityY(160);
+
+                    student.anims.play('turn', true);
+                }
+                else
+                {
+                    student.setVelocityY(0);
+
+                    student.anims.play('none', true);
+                }
             }
+
             else
             {
                 student.setVelocityX(0);
-            }
-            if (cursors.up.isDown)
-            {
-                student.setVelocityY(-160);
-
-                student.anims.play('turn', true);
-            }
-            
-            
-            else if (cursors.down.isDown)
-            {
-                student.setVelocityY(160);
-
-                student.anims.play('turn', true);
-            }
-            else
-            {
                 student.setVelocityY(0);
-
                 student.anims.play('none', true);
             }
+        }
+        function overSquare1 (student, square1)
+        {
+            square1.disableBody(true, true);
+            stepsLeft--;
+            console.log(stepsLeft);
+        }
+        function overSquare2 (student, square2)
+        {
+            square2.disableBody(true, true);
+            stepsLeft--;
+            console.log(stepsLeft);
+        }
+        function overSquare3 (student, square3)
+        {
+            square3.disableBody(true, true);
+            stepsLeft--;
+            console.log(stepsLeft);
+        }
+        function overSquare4 (student, square4)
+        {
+            square4.disableBody(true, true);
+            stepsLeft--;
+            console.log(stepsLeft);
+        }
+        function overSquare5 (student, square5)
+        {
+            square5.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare6 (student, square6)
+        {
+            square6.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare7 (student, square7)
+        {
+            square7.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare8 (student, square8)
+        {
+            square8.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare9 (student, square9)
+        {
+            square9.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare10 (student, square10)
+        {
+            square10.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare11 (student, square11)
+        {
+            square11.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare12 (student, square12)
+        {
+            square12.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare13 (student, square13)
+        {
+            square13.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare14 (student, square14)
+        {
+            square14.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare15 (student, square15)
+        {
+            square15.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare16 (student, square16)
+        {
+            square16.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare17 (student, square17)
+        {
+            square17.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare18 (student, square18)
+        {
+            square18.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare19 (student, square19)
+        {
+            square19.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare20 (student, square20)
+        {
+            square20.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare21 (student, square21)
+        {
+            square21.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare22 (student, square22)
+        {
+            square22.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare23 (student, square23)
+        {
+            square23.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare24 (student, square24)
+        {
+            square24.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare25 (student, square25)
+        {
+            square25.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare26 (student, square26)
+        {
+            square26.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare27 (student, square27)
+        {
+            square27.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare28 (student, square28)
+        {
+            square28.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare29 (student, square29)
+        {
+            square29.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare30 (student, square30)
+        {
+            square30.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare31 (student, square31)
+        {
+            square31.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function overSquare32 (student, square32)
+        {
+            square32.disableBody(true, true);
+            stepsLeft--;
+
+        }
+        function disableAll (student, s)
+        {
+            square1.
+        }
+        function reset ()
+        {
+            
+            square1.create(750, 130, 'square-1');
+            square2.create(750, 220, 'square-2');
+            square3.create(750, 310, 'square-3');
+            square4.create(750, 400, 'square-4');
+            square5.create(750, 490, 'square-5');
+            square6.create(750, 580, 'square-6');
+            square7.create(750, 670, 'square-7');
+            square8.create(750, 750, 'square-8');
+            square9.create(668, 750, 'square-9');
+            square10.create(579, 750, 'square-10');
+            square11.create(490, 750, 'square-11');
+            square12.create(401, 750, 'square-12');
+            square13.create(312, 750, 'square-13');
+            square14.create(223, 750, 'square-14');
+            square15.create(134, 750, 'square-15');
+            square16.create(50, 750, 'square-16');
+            square17.create(50, 670, 'square-17');
+            square18.create(50, 580, 'square-18');
+            square19.create(50, 490, 'square-19');
+            square20.create(50, 400, 'square-20');
+            square21.create(50, 310, 'square-21');
+            square22.create(50, 220, 'square-22');
+            square23.create(50, 130, 'square-23');
+            square24.create(50, 50, 'square-24');
+            square25.create(134, 50, 'square-25');
+            square26.create(223, 50, 'square-26');
+            square27.create(312, 50, 'square-27');
+            square28.create(401, 50, 'square-28');
+            square29.create(490, 50, 'square-29');
+            square30.create(579, 50, 'square-30');
+            square31.create(668, 50, 'square-31');
+            square32.create(750, 50, 'square-32');
+
         }
         </script>
 </body>
