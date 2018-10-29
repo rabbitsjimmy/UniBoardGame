@@ -83,6 +83,40 @@
         var square30;
         var square31;
         var square32;
+        var square1Counted;
+        var square2Counted;
+        var square3Counted;
+        var square4Counted;
+        var square5Counted;
+        var square6Counted;
+        var square7Counted;
+        var square8Counted;
+        var square9Counted;
+        var square10Counted;
+        var square11Counted;
+        var square12Counted;
+        var square13Counted;
+        var square14Counted;
+        var square15Counted;
+        var square16Counted;
+        var square17Counted;
+        var square18Counted;
+        var square19Counted;
+        var square20Counted;
+        var square21Counted;
+        var square22Counted;
+        var square23Counted;
+        var square24Counted;
+        var square25Counted;
+        var square26Counted;
+        var square27Counted;
+        var square28Counted;
+        var square29Counted;
+        var square30Counted;
+        var square31Counted;
+        var square32Counted;
+        var studentX;
+        var studentY
 
         function preload ()
         {
@@ -135,6 +169,9 @@
 
         function create ()
         {
+            studentX = 750;
+            studentY = 50;
+            
             this.add.image(400, 400, 'board');
             beesles = this.physics.add.staticGroup();
             center = this.physics.add.staticGroup();
@@ -174,18 +211,80 @@
             square31 = this.physics.add.group();
             square32 = this.physics.add.group();
 
+            square1Counted = false;
+            square2Counted = false;
+            square3Counted = false;
+            square4Counted = false;
+            square5Counted = false;
+            square6Counted = false;
+            square7Counted = false;
+            square8Counted = false;
+            square9Counted = false;
+            square10Counted = false;
+            square11Counted = false;
+            square12Counted = false;
+            square13Counted = false;
+            square14Counted = false;
+            square15Counted = false;
+            square16Counted = false;
+            square17Counted = false;
+            square18Counted = false;
+            square19Counted = false;
+            square20Counted = false;
+            square21Counted = false;
+            square22Counted = false;
+            square23Counted = false;
+            square24Counted = false;
+            square25Counted = false;
+            square26Counted = false;
+            square27Counted = false;
+            square28Counted = false;
+            square29Counted = false;
+            square30Counted = false;
+            square31Counted = false;
+            square32Counted = false;
+            
+            square1.create(760, 130, 'square-1');
+            square2.create(760, 220, 'square-2');
+            square3.create(760, 310, 'square-3');
+            square4.create(760, 400, 'square-4');
+            square5.create(760, 490, 'square-5');
+            square6.create(760, 580, 'square-6');
+            square7.create(760, 670, 'square-7');
+            square8.create(760, 760, 'square-8');
+            square9.create(670, 760, 'square-9');
+            square10.create(580, 760, 'square-10');
+            square11.create(490, 760, 'square-11');
+            square12.create(400, 760, 'square-12');
+            square13.create(310, 760, 'square-13');
+            square14.create(220, 760, 'square-14');
+            square15.create(130, 760, 'square-15');
+            square16.create(40, 760, 'square-16');
+            square17.create(40, 670, 'square-17');
+            square18.create(40, 580, 'square-18');
+            square19.create(40, 490, 'square-19');
+            square20.create(40, 400, 'square-20');
+            square21.create(40, 310, 'square-21');
+            square22.create(40, 220, 'square-22');
+            square23.create(40, 130, 'square-23');
+            square24.create(40, 40, 'square-24');
+            square25.create(135, 40, 'square-25');
+            square26.create(220, 40, 'square-26');
+            square27.create(310, 40, 'square-27');
+            square28.create(400, 40, 'square-28');
+            square29.create(490, 40, 'square-29');
+            square30.create(580, 40, 'square-30');
+            square31.create(670, 40, 'square-31');
+            square32.create(760, 40, 'square-32');
 
-            student = this.physics.add.sprite(750, 50, 'student');
-            student.setBounce(0.1);
+            student = this.physics.add.sprite(studentX, studentY, 'student');
             student.setCollideWorldBounds(true);
 
             this.input.mouse.disableContextMenu();
 
             this.input.on('pointerup', function (pointer) {
-                if(dienumber > 0)
-                {
-                    dienumber = 0;
-                }
+            var dienumber = 0
+                
                 if (pointer.rightButtonDown())
                 {
                     console.log(pointer.x + ', ' + pointer.y);
@@ -193,13 +292,10 @@
                     {
                         if(pointer.x < 700 && pointer.y < 700)
                         {
+                            dienumber = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
                             
-
-                            var dienumber = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
-                            stepsLeft = dienumber + 1;
+                            stepsLeft = dienumber + 2;
                             reset();
-                            //overSquare1(this, this);
-                            //this.add.image(400, 400, 'beesley');
                             center.create(400, 400, 'center');
                             if (dienumber === 1)
                             {
@@ -227,6 +323,7 @@
                             }
                             this.add.text(400, 200, dienumber).setFontFamily('Trebuchet MS').setFontSize(25).setColor('#008080');
                             console.log(dienumber);
+                            
                             //overSquare1(null, this);
                             //overSquare2(null, this);
                             
@@ -234,6 +331,7 @@
                     }
                     
                 }
+            
 
             }, this);
 
@@ -298,39 +396,39 @@
             this.physics.add.collider(student, square30);
             this.physics.add.collider(student, square31);
             this.physics.add.collider(student, square32);*/
-
-            this.physics.add.overlap(student, square1, overSquare1, null, this);
-            this.physics.add.overlap(student, square2, overSquare2, null, this);
-            this.physics.add.overlap(student, square3, overSquare3, null, this);
-            this.physics.add.overlap(student, square4, overSquare4, null, this);
-            this.physics.add.overlap(student, square5, overSquare5, null, this);
-            this.physics.add.overlap(student, square6, overSquare6, null, this);
-            this.physics.add.overlap(student, square7, overSquare7, null, this);
-            this.physics.add.overlap(student, square8, overSquare8, null, this);
-            this.physics.add.overlap(student, square9, overSquare9, null, this);
-            this.physics.add.overlap(student, square10, overSquare10, null, this);
-            this.physics.add.overlap(student, square11, overSquare11, null, this);
-            this.physics.add.overlap(student, square12, overSquare12, null, this);
-            this.physics.add.overlap(student, square13, overSquare13, null, this);
-            this.physics.add.overlap(student, square14, overSquare14, null, this);
-            this.physics.add.overlap(student, square15, overSquare15, null, this);
-            this.physics.add.overlap(student, square16, overSquare16, null, this);
-            this.physics.add.overlap(student, square17, overSquare17, null, this);
-            this.physics.add.overlap(student, square18, overSquare18, null, this);
-            this.physics.add.overlap(student, square19, overSquare19, null, this);
-            this.physics.add.overlap(student, square20, overSquare20, null, this);
-            this.physics.add.overlap(student, square21, overSquare21, null, this);
-            this.physics.add.overlap(student, square22, overSquare22, null, this);
-            this.physics.add.overlap(student, square23, overSquare23, null, this);
-            this.physics.add.overlap(student, square24, overSquare24, null, this);
-            this.physics.add.overlap(student, square25, overSquare25, null, this);
-            this.physics.add.overlap(student, square26, overSquare26, null, this);
-            this.physics.add.overlap(student, square27, overSquare27, null, this);
-            this.physics.add.overlap(student, square28, overSquare28, null, this);
-            this.physics.add.overlap(student, square29, overSquare29, null, this);
-            this.physics.add.overlap(student, square30, overSquare30, null, this);
-            this.physics.add.overlap(student, square31, overSquare31, null, this);
-            this.physics.add.overlap(student, square32, overSquare32, null, this);
+            
+            this.physics.add.overlap(student, square1, overSquare1);
+            this.physics.add.overlap(student, square2, overSquare2);
+            this.physics.add.overlap(student, square3, overSquare3);
+            this.physics.add.overlap(student, square4, overSquare4);
+            this.physics.add.overlap(student, square5, overSquare5);
+            this.physics.add.overlap(student, square6, overSquare6);
+            this.physics.add.overlap(student, square7, overSquare7);
+            this.physics.add.overlap(student, square8, overSquare8);
+            this.physics.add.overlap(student, square9, overSquare9);
+            this.physics.add.overlap(student, square10, overSquare10);
+            this.physics.add.overlap(student, square11, overSquare11);
+            this.physics.add.overlap(student, square12, overSquare12);
+            this.physics.add.overlap(student, square13, overSquare13);
+            this.physics.add.overlap(student, square14, overSquare14);
+            this.physics.add.overlap(student, square15, overSquare15);
+            this.physics.add.overlap(student, square16, overSquare16);
+            this.physics.add.overlap(student, square17, overSquare17);
+            this.physics.add.overlap(student, square18, overSquare18);
+            this.physics.add.overlap(student, square19, overSquare19);
+            this.physics.add.overlap(student, square20, overSquare20);
+            this.physics.add.overlap(student, square21, overSquare21);
+            this.physics.add.overlap(student, square22, overSquare22);
+            this.physics.add.overlap(student, square23, overSquare23);
+            this.physics.add.overlap(student, square24, overSquare24);
+            this.physics.add.overlap(student, square25, overSquare25);
+            this.physics.add.overlap(student, square26, overSquare26);
+            this.physics.add.overlap(student, square27, overSquare27);
+            this.physics.add.overlap(student, square28, overSquare28);
+            this.physics.add.overlap(student, square29, overSquare29);
+            this.physics.add.overlap(student, square30, overSquare30);
+            this.physics.add.overlap(student, square31, overSquare31);
+            this.physics.add.overlap(student, square32, overSquare32);
 
 
 
@@ -341,14 +439,12 @@
             if(stepsLeft > 0)
             {
             
-                if (cursors.right.isDown)
+                if (cursors.right.isDown && lockDir!== 2)
                 {
                     student.setVelocityX(160);
                     student.anims.play('turn', true);
-                    playerFrame++;
-                    console.log(playerFrame);
                 }
-                else if (cursors.left.isDown)
+                else if (cursors.left.isDown && lockDir !== 4)
                 {
                     student.setVelocityX(-160);
 
@@ -358,7 +454,7 @@
                 {
                     student.setVelocityX(0);
                 }
-                if (cursors.up.isDown)
+                if (cursors.up.isDown && lockDir !== 1)
                 {
                     student.setVelocityY(-160);
 
@@ -366,7 +462,7 @@
                 }
                 
                 
-                else if (cursors.down.isDown)
+                else if (cursors.down.isDown && lockDir !== 3)
                 {
                     student.setVelocityY(160);
 
@@ -387,240 +483,339 @@
                 student.anims.play('none', true);
             }
         }
-        function overSquare1 (student, square1)
+        
+        function overSquare1 ()
         {
-            square1.disableBody(true, true);
-            stepsLeft--;
-            console.log(stepsLeft);
-        }
-        function overSquare2 (student, square2)
-        {
-            square2.disableBody(true, true);
-            stepsLeft--;
-            console.log(stepsLeft);
-        }
-        function overSquare3 (student, square3)
-        {
-            square3.disableBody(true, true);
-            stepsLeft--;
-            console.log(stepsLeft);
-        }
-        function overSquare4 (student, square4)
-        {
-            square4.disableBody(true, true);
-            stepsLeft--;
-            console.log(stepsLeft);
-        }
-        function overSquare5 (student, square5)
-        {
-            square5.disableBody(true, true);
-            stepsLeft--;
+            if (square1Counted === false)
+            {
+                stepsLeft--;
+                square1Counted = true;
+                lockDir = 1;
 
+            }
         }
-        function overSquare6 (student, square6)
+        function overSquare2 ()
         {
-            square6.disableBody(true, true);
-            stepsLeft--;
+            if (square2Counted === false)
+            {
+                stepsLeft--;
+                square2Counted = true;
+                lockDir = 1;
+            }
+        }
+        function overSquare3 ()
+        {
+            if (square3Counted === false)
+            {
+                stepsLeft--;
+                square3Counted = true;
+                lockDir = 1;
+            }
+        }
+        function overSquare4 ()
+        {
+            if (square4Counted === false)
+            {
+                stepsLeft--;
+                square4Counted = true;
+                
+                lockDir = 1;
+                
+            }
+        }
+        function overSquare5 ()
+        {
+            if (square5Counted === false)
+            {
+                stepsLeft--;
+                square5Counted = true;
+                lockDir = 1;
+            }
+        }
+        function overSquare6 ()
+        {
+            if (square6Counted === false)
+            {
+                stepsLeft--;
+                square6Counted = true;
+                lockDir = 1;
+            }
+        }
+        function overSquare7 ()
+        {
+            if (square7Counted === false)
+            {
+                stepsLeft--;
+                square7Counted = true;
+                lockDir = 1;
+            }
+        }
+        function overSquare8 ()
+        {
+            if (square8Counted === false)
+            {
+                stepsLeft--;
+                square8Counted = true;
+                lockDir = 1;
+            }
+        }
+        function overSquare9 ()
+        {
+            if (square9Counted === false)
+            {
+                stepsLeft--;
+                square9Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare10 ()
+        {
+            if (square10Counted === false)
+            {
+                stepsLeft--;
+                square10Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare11 ()
+        {
+            if (square11Counted === false)
+            {
+                stepsLeft--;
+                square11Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare12 ()
+        {
+            if (square12Counted === false)
+            {
+                stepsLeft--;
+                square12Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare13 ()
+        {
+            if (square13Counted === false)
+            {
+                stepsLeft--;
+                square13Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare14 ()
+        {
+            if (square14Counted === false)
+            {
+                stepsLeft--;
+                square14Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare15 ()
+        {
+            if (square15Counted === false)
+            {
+                stepsLeft--;
+                square15Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare16 ()
+        {
+            if (square16Counted === false)
+            {
+                stepsLeft--;
+                square16Counted = true;
+                lockDir = 2;
+            }
+        }
+        function overSquare17 ()
+        {
+            if (square17Counted === false)
+            {
+                stepsLeft--;
+                square17Counted = true;
+                lockDir = 3;
 
+            }
         }
-        function overSquare7 (student, square7)
+        function overSquare18 ()
         {
-            square7.disableBody(true, true);
-            stepsLeft--;
+            if (square18Counted === false)
+            {
+                stepsLeft--;
+                square18Counted = true;
+                lockDir = 3;
+            }
+        }
+        function overSquare19 ()
+        {
+            if (square19Counted === false)
+            {
+                stepsLeft--;
+                square19Counted = true;
+                lockDir = 3;
+            }
+        }
+        function overSquare20 ()
+        {
+            if (square20Counted === false)
+            {
+                stepsLeft--;
+                square20Counted = true;
+                lockDir = 3;
+            }
+        }
+        function overSquare21 ()
+        {
+            if (square21Counted === false)
+            {
+                stepsLeft--;
+                square21Counted = true;
+                lockDir = 3;
+            }
+        }
+        function overSquare22 ()
+        {
+            if (square22Counted === false)
+            {
+                stepsLeft--;
+                square22Counted = true;
+                lockDir = 3;
+            }
+        }
+        function overSquare23 ()
+        {
+            if (square23Counted === false)
+            {
+                stepsLeft--;
+                square23Counted = true;
+                lockDir = 3;
+            }
+        }
+        function overSquare24 ()
+        {
+            if (square24Counted === false)
+            {
+                stepsLeft--;
+                square24Counted = true;
+                lockDir = 3;
+            }
+        }
+        function overSquare25 ()
+        {
+            if (square25Counted === false)
+            {
+                stepsLeft--;
+                square25Counted = true;
+                lockDir = 4;
+            }
+        }
+        function overSquare26 ()
+        {
+            if (square26Counted === false)
+            {
+                stepsLeft--;
+                square26Counted = true;
+                lockDir = 4;
+            }
+        }
+        function overSquare27 ()
+        {
+            if (square27Counted === false)
+            {
+                stepsLeft--;
+                square27Counted = true;
+                lockDir = 4;
+            }
+        }
+        function overSquare28 ()
+        {
+            if (square28Counted === false)
+            {
+                stepsLeft--;
+                square28Counted = true;
+                lockDir = 4;
+            }
+        }
+        function overSquare29 ()
+        {
+            if (square29Counted === false)
+            {
+                stepsLeft--;
+                square29Counted = true;
+                lockDir = 4;
+            }
+        }
+        function overSquare30 ()
+        {
+            if (square30Counted === false)
+            {
+                stepsLeft--;
+                square30Counted = true;
+                lockDir = 4;
+            }
+            
+        }
+        function overSquare31 ()
+        {
+            if (square31Counted === false)
+            {
+                stepsLeft--;
+                square31Counted = true;
+                lockDir = 4;
+            }
+        }
+        function overSquare32 ()
+        {
+            if (square32Counted === false)
+            {
+                stepsLeft--;
+                square32Counted = true;
+                lockDir = 4;
+            }
+        }
+        
+        function reset()
+        {
+            square1Counted = false;
+            square2Counted = false;
+            square3Counted = false;
+            square4Counted = false;
+            square5Counted = false;
+            square6Counted = false;
+            square7Counted = false;
+            square8Counted = false;
+            square9Counted = false;
+            square10Counted = false;
+            square11Counted = false;
+            square12Counted = false;
+            square13Counted = false;
+            square14Counted = false;
+            square15Counted = false;
+            square16Counted = false;
+            square17Counted = false;
+            square18Counted = false;
+            square19Counted = false;
+            square20Counted = false;
+            square21Counted = false;
+            square22Counted = false;
+            square23Counted = false;
+            square24Counted = false;
+            square25Counted = false;
+            square26Counted = false;
+            square27Counted = false;
+            square28Counted = false;
+            square29Counted = false;
+            square30Counted = false;
+            square31Counted = false;
+            square32Counted = false;
+            lockDir = 0;
+        }
 
-        }
-        function overSquare8 (student, square8)
-        {
-            square8.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare9 (student, square9)
-        {
-            square9.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare10 (student, square10)
-        {
-            square10.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare11 (student, square11)
-        {
-            square11.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare12 (student, square12)
-        {
-            square12.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare13 (student, square13)
-        {
-            square13.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare14 (student, square14)
-        {
-            square14.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare15 (student, square15)
-        {
-            square15.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare16 (student, square16)
-        {
-            square16.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare17 (student, square17)
-        {
-            square17.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare18 (student, square18)
-        {
-            square18.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare19 (student, square19)
-        {
-            square19.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare20 (student, square20)
-        {
-            square20.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare21 (student, square21)
-        {
-            square21.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare22 (student, square22)
-        {
-            square22.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare23 (student, square23)
-        {
-            square23.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare24 (student, square24)
-        {
-            square24.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare25 (student, square25)
-        {
-            square25.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare26 (student, square26)
-        {
-            square26.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare27 (student, square27)
-        {
-            square27.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare28 (student, square28)
-        {
-            square28.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare29 (student, square29)
-        {
-            square29.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare30 (student, square30)
-        {
-            square30.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare31 (student, square31)
-        {
-            square31.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function overSquare32 (student, square32)
-        {
-            square32.disableBody(true, true);
-            stepsLeft--;
-
-        }
-        function disableAll (student, square1)
-        {
-            square1.disableBody(true, true);
-        }
-        function reset ()
-        {
-            /*
-            square1.create(750, 130, 'square-1');
-            square2.create(750, 220, 'square-2');
-            square3.create(750, 310, 'square-3');
-            square4.create(750, 400, 'square-4');
-            square5.create(750, 490, 'square-5');
-            square6.create(750, 580, 'square-6');
-            square7.create(750, 670, 'square-7');
-            square8.create(750, 750, 'square-8');
-            square9.create(668, 750, 'square-9');
-            square10.create(579, 750, 'square-10');
-            square11.create(490, 750, 'square-11');
-            square12.create(401, 750, 'square-12');
-            square13.create(312, 750, 'square-13');
-            square14.create(223, 750, 'square-14');
-            square15.create(134, 750, 'square-15');
-            square16.create(50, 750, 'square-16');
-            square17.create(50, 670, 'square-17');
-            square18.create(50, 580, 'square-18');
-            square19.create(50, 490, 'square-19');
-            square20.create(50, 400, 'square-20');
-            square21.create(50, 310, 'square-21');
-            square22.create(50, 220, 'square-22');
-            square23.create(50, 130, 'square-23');
-            square24.create(50, 50, 'square-24');
-            square25.create(134, 50, 'square-25');
-            square26.create(223, 50, 'square-26');
-            square27.create(312, 50, 'square-27');
-            square28.create(401, 50, 'square-28');
-            square29.create(490, 50, 'square-29');
-            square30.create(579, 50, 'square-30');
-            square31.create(668, 50, 'square-31');
-            square32.create(750, 50, 'square-32');
-            */
-
-        }
+        
         </script>
 </body>
 </html>
