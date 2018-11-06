@@ -16,30 +16,13 @@
         }
         
     </style>
+    <meta http-equiv="Cache-control" content="no-cache">
+
+
 </head>
 <body>
         <script>
-        var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 800,
-        pixelArt: true,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 0 },
-                debug: false
-            }
-        },
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
-        }
-        };
-
-        var game = new Phaser.Game(config);
-        var player;
+            var player;
         var student;
         var cursors;
         var beesles;
@@ -116,10 +99,26 @@
         var square31Counted;
         var square32Counted;
         var studentX;
-        var studentY
+        var studentY;
+        var inMinigame;
+        var scene;
+        var points;
+        var squareOn;
+        var scoreText;
+        var timer;
+        var artifact;
+var Game = new Phaser.Class({
 
-        function preload ()
-        {
+            Extends: Phaser.Scene,
+
+            initialize:
+            function Game ()
+            {
+                Phaser.Scene.call(this, 'game');
+            },
+
+            preload: function ()
+            {
             this.load.image('board', 'sprites/board.png');
             this.load.spritesheet('student', 'sprites/student.png', {frameWidth: 136 / 4, frameHeight: 160 / 4});
             this.load.image('beesley', 'sprites/Beesley.png');
@@ -139,36 +138,33 @@
             this.load.image('square-6', 'sprites/square-6.png');
             this.load.image('square-7', 'sprites/square-7.png');
             this.load.image('square-8', 'sprites/square-8.png');
-            this.load.image('square-9', 'sprites/square-9.png');
-            this.load.image('square-10', 'sprites/square-10.png');
-            this.load.image('square-11', 'sprites/square-11.png');
-            this.load.image('square-12', 'sprites/square-12.png');
-            this.load.image('square-13', 'sprites/square-13.png');
-            this.load.image('square-14', 'sprites/square-14.png');
-            this.load.image('square-15', 'sprites/square-15.png');
-            this.load.image('square-16', 'sprites/square-16.png');
-            this.load.image('square-17', 'sprites/square-17.png');
-            this.load.image('square-18', 'sprites/square-18.png');
-            this.load.image('square-19', 'sprites/square-19.png');
-            this.load.image('square-20', 'sprites/square-20.png');
-            this.load.image('square-21', 'sprites/square-21.png');
-            this.load.image('square-22', 'sprites/square-22.png');
-            this.load.image('square-23', 'sprites/square-23.png');
-            this.load.image('square-24', 'sprites/square-24.png');
-            this.load.image('square-25', 'sprites/square-25.png');
-            this.load.image('square-26', 'sprites/square-26.png');
-            this.load.image('square-27', 'sprites/square-27.png');
-            this.load.image('square-28', 'sprites/square-28.png');
-            this.load.image('square-29', 'sprites/square-29.png');
-            this.load.image('square-30', 'sprites/square-30.png');
-            this.load.image('square-31', 'sprites/square-31.png');
-            this.load.image('square-32', 'sprites/square-32.png');
-            
-            
-        }
-
-        function create ()
-        {
+            this.load.image('square-9', 'sprites/square-1.png');
+            this.load.image('square-10', 'sprites/square-2.png');
+            this.load.image('square-11', 'sprites/square-3.png');
+            this.load.image('square-12', 'sprites/square-4.png');
+            this.load.image('square-13', 'sprites/square-5.png');
+            this.load.image('square-14', 'sprites/square-6.png');
+            this.load.image('square-15', 'sprites/square-7.png');
+            this.load.image('square-16', 'sprites/square-8.png');
+            this.load.image('square-17', 'sprites/square-1.png');
+            this.load.image('square-18', 'sprites/square-2.png');
+            this.load.image('square-19', 'sprites/square-3.png');
+            this.load.image('square-20', 'sprites/square-4.png');
+            this.load.image('square-21', 'sprites/square-5.png');
+            this.load.image('square-22', 'sprites/square-6.png');
+            this.load.image('square-23', 'sprites/square-7.png');
+            this.load.image('square-24', 'sprites/square-8.png');
+            this.load.image('square-25', 'sprites/square-1.png');
+            this.load.image('square-26', 'sprites/square-2.png');
+            this.load.image('square-27', 'sprites/square-3.png');
+            this.load.image('square-28', 'sprites/square-4.png');
+            this.load.image('square-29', 'sprites/square-5.png');
+            this.load.image('square-30', 'sprites/square-6.png');
+            this.load.image('square-31', 'sprites/square-7.png');
+            this.load.image('square-32', 'sprites/square-8.png');
+            },
+            create: function ()
+            {
             studentX = 750;
             studentY = 50;
             
@@ -210,6 +206,7 @@
             square30 = this.physics.add.group();
             square31 = this.physics.add.group();
             square32 = this.physics.add.group();
+
 
             square1Counted = false;
             square2Counted = false;
@@ -277,6 +274,8 @@
             square31.create(670, 40, 'square-31');
             square32.create(760, 40, 'square-32');
 
+            
+
             student = this.physics.add.sprite(studentX, studentY, 'student');
             student.setCollideWorldBounds(true);
 
@@ -294,7 +293,7 @@
                         {
                             dienumber = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
                             
-                            stepsLeft = dienumber + 2;
+                            stepsLeft = dienumber + 1;
                             reset();
                             center.create(400, 400, 'center');
                             if (dienumber === 1)
@@ -363,39 +362,6 @@
             
             //this.physics.add.collider(student, beesles);
             this.physics.add.collider(student, center); 
-            /*
-            this.physics.add.collider(student, square1);
-            this.physics.add.collider(student, square2);
-            this.physics.add.collider(student, square3);
-            this.physics.add.collider(student, square4);
-            this.physics.add.collider(student, square5);
-            this.physics.add.collider(student, square6);
-            this.physics.add.collider(student, square7);
-            this.physics.add.collider(student, square8);
-            this.physics.add.collider(student, square9);
-            this.physics.add.collider(student, square10);
-            this.physics.add.collider(student, square11);
-            this.physics.add.collider(student, square12);
-            this.physics.add.collider(student, square13);
-            this.physics.add.collider(student, square14);
-            this.physics.add.collider(student, square15);
-            this.physics.add.collider(student, square16);
-            this.physics.add.collider(student, square17);
-            this.physics.add.collider(student, square18);
-            this.physics.add.collider(student, square19);
-            this.physics.add.collider(student, square20);
-            this.physics.add.collider(student, square21);
-            this.physics.add.collider(student, square22);
-            this.physics.add.collider(student, square23);
-            this.physics.add.collider(student, square24);
-            this.physics.add.collider(student, square25);
-            this.physics.add.collider(student, square26);
-            this.physics.add.collider(student, square27);
-            this.physics.add.collider(student, square28);
-            this.physics.add.collider(student, square29);
-            this.physics.add.collider(student, square30);
-            this.physics.add.collider(student, square31);
-            this.physics.add.collider(student, square32);*/
             
             this.physics.add.overlap(student, square1, overSquare1);
             this.physics.add.overlap(student, square2, overSquare2);
@@ -429,12 +395,9 @@
             this.physics.add.overlap(student, square30, overSquare30);
             this.physics.add.overlap(student, square31, overSquare31);
             this.physics.add.overlap(student, square32, overSquare32);
-
-
-
-        }
-
-        function update ()
+        
+        },
+        update: function ()
         {
             if(stepsLeft > 0)
             {
@@ -483,7 +446,146 @@
                 student.anims.play('none', true);
             }
         }
+        });
+var HistoryGame = new Phaser.Class({
+    Extends: Phaser.Scene,
+    initialize:
+
+    function HistoryGame ()
+    {
+        Phaser.Scene.call(this, 'history');
+    },
+    preload: function ()
+    {
+        this.load.image('Maze', 'sprites/Maze.png');
+        //this.load.spritesheet('student', 'sprites/student.png', {frameWidth: 136 / 4, frameHeight: 160 / 4});
+        this.load.image('student', 'sprites/TacoBeef.png');
+        this.load.image('square', 'sprites/square-5.png');
+    },
+    create: function ()
+    {
+        artifact = false;
+        this.cameras.main.setBounds(0, 0, 1600, 1600);
+        this.physics.world.setBounds(0, 0, 1600, 1600);
+        student = this.physics.add.sprite(1500, 1500, 'student');
+        student.setCollideWorldBounds(true);
+        Maze = this.physics.add.staticGroup();
+        Maze.create(800, 800, 'Maze');
+
+        square = this.physics.add.staticGroup();
+        square.create(770, 180, 'square');
+
+        this.add.image(0, 0, 'Maze').setOrigin(0).setScrollFactor(1);
+        //Maze.create(800, 800, 'Maze');
+        cursors = this.input.keyboard.createCursorKeys();
+
         
+
+        this.cameras.main.startFollow(student, true, 2, 2);
+    
+        //this.cameras.main.setZoom(4);
+
+        //this.cameras.main.startFollow();
+        /*
+        this.anims.create({
+                key: 'turn',
+                frames: this.anims.generateFrameNumbers('student', { start: 0, end: 5 }),
+                frameRate: 10,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'none',
+                frames: [ { key: 'student', frame: 4 } ],
+                frameRate: 10
+            });*/
+            //this.physics.add.collider(student, square); 
+            this.physics.add.overlap(student, square, artifactFound);
+            if (artifact === true)
+            {
+                this.scene.launch('SceneB');
+                //console.log('collision');
+            }
+            
+
+    },
+    update: function ()
+    {
+        if (cursors.right.isDown)
+                {
+                    student.setVelocityX(160);
+                    //student.anims.play('turn', true);
+                }
+                else if (cursors.left.isDown)
+                {
+                    student.setVelocityX(-160);
+
+                    //student.anims.play('turn', true);
+                }
+                else
+                {
+                    student.setVelocityX(0);
+                }
+                if (cursors.up.isDown)
+                {
+                    student.setVelocityY(-160);
+
+                    //student.anims.play('turn', true);
+                }
+                
+                
+                else if (cursors.down.isDown)
+                {
+                    student.setVelocityY(160);
+
+                    //student.anims.play('turn', true);
+                }
+                else
+                {
+                    student.setVelocityY(0);
+                    //student.anims.play('none', true);
+                }
+    },
+
+})
+        
+        var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 800,
+        pixelArt: true,
+        //backgroundColor: '#2d2d8d',
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 0 },
+                debug: true
+            }
+        },
+        scene: [HistoryGame, Game]
+        };
+
+        var game = new Phaser.Game(config);
+        
+
+        function preload ()
+        {
+            
+            
+        }
+
+        function create ()
+        {
+            timer = 0;
+            scene = 0;
+            points = 0;
+        }
+
+        function update ()
+        {
+            
+        }
+        {
         function overSquare1 ()
         {
             if (square1Counted === false)
@@ -777,7 +879,16 @@
                 lockDir = 4;
             }
         }
-        
+        function artifactFound ()
+        {
+            console.log('hello');
+            artifact = true;
+            console.log(artifact);
+            //this.scene.launch('game');    
+            //this.scene.start('game');
+                
+        }
+    }
         function reset()
         {
             square1Counted = false;
@@ -813,6 +924,10 @@
             square31Counted = false;
             square32Counted = false;
             lockDir = 0;
+        }
+        function countTimer()
+        {
+            timer++;
         }
 
         
